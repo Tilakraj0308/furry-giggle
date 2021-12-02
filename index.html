@@ -9,21 +9,20 @@
     <script src="./lib/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-            $("#add").click(function () {
+            function addTodo() {
                 let val = $("#txt").val();
                 if (val !== "") {
                     $("ul").append("<li>" + val + "</li>");
                     $("#txt").val("");
                 }
+            }
+            $("#add").click(function () {
+               addTodo();
             });
             $(document).keypress(function (event) {
-                var keycode = (event.keyCode ? event.keyCode : event.which);
-                if (keycode == '13') {
-                    let val = $("#txt").val();
-                    if (val !== "") {
-                        $("ul").append("<li>" + val + "</li>");
-                        $("#txt").val("");
-                    }
+                let keyCode = (event.keyCode ? event.keyCode : event.which);
+                if (keyCode === '13') {
+                    addTodo();
                 }
             });
             $("ul").on("click", "li", function () {
